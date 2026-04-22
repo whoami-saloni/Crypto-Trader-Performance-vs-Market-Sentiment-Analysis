@@ -1,9 +1,16 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 sns.set_style("whitegrid")
 
+def save_plot(fig_name):
+    output_dir = "outputs/plots"
+    os.makedirs(output_dir, exist_ok=True)
 
+    file_path = os.path.join(output_dir, f"{fig_name}.png")
+    plt.savefig(file_path, bbox_inches='tight')
+    print(f"✅ Saved: {file_path}")
 # ---------------- PnL DISTRIBUTION ----------------
 def plot_pnl_distribution(df):
     plt.figure()
@@ -13,6 +20,8 @@ def plot_pnl_distribution(df):
     plt.ylabel("Net PnL")
     plt.xticks(rotation=30)
     plt.tight_layout()
+    save_plot("pnl_distribution")
+    plt.close()
     plt.show()
 
 
@@ -24,6 +33,8 @@ def plot_roi(df):
     plt.ylabel("ROI")
     plt.xticks(rotation=30)
     plt.tight_layout()
+    save_plot("Average ROI by Sentiment")
+    plt.close()
     plt.show()
 
 
@@ -35,6 +46,8 @@ def plot_win_rate(df):
     plt.ylabel("Win Rate")
     plt.xticks(rotation=30)
     plt.tight_layout()
+    save_plot("Win Rate by Sentiment")
+    plt.close()
     plt.show()
 
 
@@ -46,6 +59,8 @@ def plot_risk_analysis(risk_analysis):
     plt.ylabel("Value")
     plt.xticks(rotation=30)
     plt.tight_layout()
+    save_plot("Risk Metrics by Sentiment")
+    plt.close()
     plt.show()
 
 
@@ -57,6 +72,8 @@ def plot_volatility(volatility):
     plt.ylabel("Std Dev of PnL")
     plt.xticks(rotation=30)
     plt.tight_layout()
+    save_plot("PnL Volatility by Sentiment")
+    plt.close()
     plt.show()
 
 
@@ -68,6 +85,8 @@ def plot_direction_bias(direction_bias):
     plt.ylabel("Number of Trades")
     plt.xticks(rotation=30)
     plt.tight_layout()
+    save_plot("Buy vs Sell Behavior by Sentiment")
+    plt.close()
     plt.show()
 
 
@@ -79,6 +98,8 @@ def plot_trader_performance(trader_stats):
     plt.xlabel("Average ROI")
     plt.ylabel("Total PnL")
     plt.tight_layout()
+    save_plot("Trader Performance: ROI vs Total PnL")
+    plt.close()
     plt.show()
 
 
@@ -90,6 +111,8 @@ def plot_top_traders(trader_stats, top_n=10):
     plt.title(f"Top {top_n} Traders by PnL")
     plt.xticks(rotation=45)
     plt.tight_layout()
+    save_plot("Top Traders by PnL")
+    plt.close()
     plt.show()
 
 
@@ -115,4 +138,6 @@ def plot_strategy_comparison(strategy_results):
     plt.title("Strategy Performance Comparison")
     plt.ylabel("Total Net PnL")
     plt.tight_layout()
+    save_plot("Strategy Performance Comparison")
+    plt.close()
     plt.show()
